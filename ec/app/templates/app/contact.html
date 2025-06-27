@@ -1,0 +1,92 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock title %}
+
+{% block main-content %}
+<div class="container mt-5">
+    <!-- Contact Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-4">Contact Us</h2>
+        <p class="lead text-muted">We'd love to hear from you! Reach out to us below.</p>
+    </div>
+
+    <!-- Contact Info Section -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="p-4 border rounded shadow-sm">
+                <h4><strong>Address:</strong></h4>
+                <p>123 Main Street, Your City, Country</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border rounded shadow-sm">
+                <h4><strong>Contact:</strong></h4>
+                <p>+1 234 567 890</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border rounded shadow-sm">
+                <h4><strong>Email:</strong></h4>
+                <p>contact@yourdomain.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Follow Us Section -->
+    <div class="text-center mb-5">
+        <h4>Follow Us On Social Media</h4>
+        <div class="social-links">
+            <a href="https://www.facebook.com" class="btn btn-outline-facebook m-2" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com" class="btn btn-outline-instagram m-2" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.twitter.com" class="btn btn-outline-twitter m-2" target="_blank">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-center mb-4">Send Us a Message</h4>
+            <form action="/submit-contact-form" method="POST" class="bg-light p-4 rounded shadow-sm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Write your message"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Location Map (Optional) -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h4 class="text-center mb-4">Our Location</h4>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=..." allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Add a Footer with CTA -->
+<div class="bg-dark text-white text-center p-4 mt-5">
+    <p>Have any questions? <a href="/contact" class="text-white">Contact us now!</a></p>
+</div>
+
+{% endblock main-content %}

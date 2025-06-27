@@ -1,0 +1,146 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <!-- Display Messages -->
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-danger text-center fw-bold" role="alert">
+                {{ msg }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <!-- Order Summary Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded p-3">
+                <h4 class="fw-bold text-center text-primary">Order Summary</h4>
+                <hr>
+                {% for item in cart_items %}
+                <div class="card border-0 shadow-sm p-2 mb-2">
+                    <div class="card-body">
+                        <h5 class="fw-bold">{{ item.product.title }}</h5>
+                        <p class="mb-1 text-muted">Quantity: <b>{{ item.quantity }}</b></p>
+                        <p class="fw-bold text-success">Price: Rs. {{ item.product.discounted_price }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <hr>
+                <h5 class="fw-bold text-center text-danger">Total Cost: Rs. {{ totalamount }} <small class="text-muted">(+ Rs. 40 Delivery)</small></h5>
+                <small class="text-muted">By placing your order, you agree to our 
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>.
+                </small>
+            </div>
+        </div>
+
+        <!-- Address Selection Section -->
+        <div class="col-md-5 offset-md-1">
+            <div class="card shadow-sm border-0 rounded p-3">
+                <h4 class="fw-bold text-center text-primary">Shipping Address</h4>
+                <hr>
+                <form method="post" action="{% url 'place_order' %}" id="myform">
+                    {% csrf_token %}
+                    
+                    {% for ad in add %}
+                    <div class="card border-0 shadow-sm mb-3 p-2">
+                        <div class="card-body">
+                            <h5 class="fw-bold">{{ ad.name }}</h5>
+                            <p class="text-muted mb-1">Mobile: {{ ad.mobile }}</p>
+                            <p class="mb-1">{{ ad.locality }}, {{ ad.city }} - {{ ad.zipcode }}</p>
+                            <input type="radio" name="address" value="{{ ad.id }}" required> 
+                            <span class="fw-bold text-primary">Select this address</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="form-check mb-3">
+                        <label for="totalamount" class="form-label fw-bold">Total Amount</label>
+                        <input type="number" class="form-control shadow-sm" name="totalamount" value="{{ totalamount }}" readonly>
+                    </div>
+
+                    <div class="text-end">
+                        <!--<button type="submit" class="btn btn-lg btn-warning fw-bold px-5 shadow-sm">Place Order</button> -->
+                        <!--<button id="rzp-button1" type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Payment</button>-->
+                        <button id="rzp-button1" type="button" class="btn btn-warning mt-3 px-5 fw-bold" onclick="openPaymentForm()">Payment</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms & Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Terms & Conditions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. General</h6>
+                <p>By using our website, you agree to the following terms and conditions. Please read them carefully before placing your order.</p>
+
+                <h6>2. Order Acceptance</h6>
+                <p>Once you place an order, we will send you an order confirmation email. Please note that this does not guarantee availability, and orders can be canceled if products are out of stock.</p>
+
+                <h6>3. Pricing and Payment</h6>
+                <p>All prices are listed in INR and are inclusive of taxes, unless otherwise stated. Shipping charges will be added to your total, as stated during checkout.</p>
+
+                <h6>4. Shipping and Delivery</h6>
+                <p>We aim to ship all orders within 1-2 business days. Delivery times may vary based on your location. Please refer to the estimated delivery time during checkout.</p>
+
+                <h6>5. Return and Refund Policy</h6>
+                <p>If you are not satisfied with your purchase, you can return the product within 15 days of delivery. Returns will only be accepted if the product is unused and in its original packaging.</p>
+
+                <h6>6. Privacy Policy</h6>
+                <p>Your privacy is important to us. We collect and store your personal data to process your orders and provide a better shopping experience. Please refer to our privacy policy for more details.</p>
+
+                <h6>7. Contact Us</h6>
+                <p>If you have any questions or concerns, feel free to contact our customer support at <a href="mailto:support@yourstore.com">support@yourstore.com</a>.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+<style>
+    .card { border-radius: 10px; }
+    .btn-warning:hover { background-color: #e6a700; }
+</style>
+
+{% endblock main-content %}
+
+
+
+{% block payment-gateway %}
+<form id="payment-form" method="POST" action="{% url 'process_payment' %}" style="display: none;">
+    {% csrf_token %}
+    <input type="hidden" name="totalamount" value="{{ totalamount }}">
+    <input type="hidden" name="selected_address" id="selected_address">
+</form>
+<script>
+    function openPaymentForm() {
+        // Get the selected address
+        let selectedAddress = document.querySelector('input[name="address"]:checked');
+
+        if (!selectedAddress) {
+            alert("Please select an address before proceeding to payment.");
+            return;
+        }
+
+        // Set the selected address in the hidden form
+        document.getElementById("selected_address").value = selectedAddress.value;
+
+        // Submit the hidden form
+        document.getElementById("payment-form").submit();
+    }
+</script>
+{% endblock payment-gateway %}

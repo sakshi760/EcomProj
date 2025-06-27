@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar for Categories -->
+        <div class="col-sm-3">
+            <div class="list-group">
+                {% for val in title %}
+                <a href="{% url 'category-title' val.title %}"
+                       class="list-group-item list-group-item-action" aria-current="true">{{ val.title }}</a>
+              
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-sm-9">
+            {% if product %}
+                <h2>Available Products</h2>
+                <div class="row">
+                    {% for prod in product %}
+                    <div class="col-md-4 text-center mb-4">
+                        <a href="{% url 'product-detail' prod.id %}" class="btn">
+                            <img src="{{ prod.product_image.url }}" width="300px" height="200px" alt="{{ prod.title }}" />
+                            <div class="fw-bold mt-2">{{ prod.title }}</div>
+                            <div class="mt-1 d-flex justify-content-center align-items-center">
+                                <span class="fw-bold text-danger me-2">
+                                    Rs. {{ prod.discounted_price }}/-
+                                </span>
+                                <small class="fw-light text-decoration-line-through text-muted">
+                                    Rs. {{ prod.selling_price }}
+                                </small>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h2 class="text-center text-muted">No products available in this category.</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
+
+

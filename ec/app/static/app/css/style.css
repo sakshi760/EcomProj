@@ -1,0 +1,93 @@
+.welcome-text {
+  font-family: 'Cursive', sans-serif;
+  color:#517772; /* Warm coffee-like color */
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeIn 2s ease-in-out;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #dde7e9; /* Subtle background for cards */
+  box-shadow: 0 4px 10px rgba(3, 1, 1, 0.1); /* Soft shadow */
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow */
+}
+
+.product-image {
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.product-image img {
+  transition: transform 0.3s ease;
+  border-radius: 15px;
+  width: 100%; /* Ensures responsive images */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.product-image:hover img {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  transition: opacity 0.3s ease;
+}
+
+.product-image:hover .overlay {
+  opacity: 1;
+}
+
+.overlay p {
+  color: #726895;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h4 {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #333; /* Darker text for better readability */
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+p {
+  font-family: 'Arial', sans-serif;
+  color: #666; /* Subtle gray text */
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}

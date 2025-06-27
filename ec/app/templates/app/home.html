@@ -1,0 +1,162 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100 " alt="...">
+    </div>
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b6.jpg' %}" class="d-block w-100 " alt="...">
+    </div>
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b7.jpg' %}" class="d-block w-100 " alt="...">
+    </div>
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b8.jpg' %}" class="d-block w-100 " alt="...">
+    </div>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock banner-slider %}
+
+{% block information %}
+<div class="container">
+  <div class="row bg-success text-center p-5 text-white border-bottom shadow">
+    <h1>Products</h1>
+    <small class="f5">Indulge in the finest selection of delicious snacks, aromatic coffees, and delectable treats!
+
+      Whether you’re craving a quick bite, a cozy coffee break, or a full meal, we’ve got something special for you. Explore our handcrafted menu featuring fresh, flavorful dishes and beverages that will tantalize your taste buds.
+      
+      Your perfect food journey starts here.
+      Ready to dig in?</small>
+  </div>
+</div>
+{% endblock information %}
+
+{% block main-content %}
+<h1 class="welcome-text"></h1>
+
+<div class="row g-4">
+  <div class="row g-4">
+    <!-- Product 4 -->
+    <div class="col-md-4">
+      <div class="product-card text-center">
+        <a href="{% url 'product-detail' 4 %}" class="text-decoration-none">
+          <div class="product-image position-relative">
+            <img src="{% static 'app/images/product/p4..jpg' %}" alt="Espresso" class="img-fluid rounded shadow-sm">
+            <div class="overlay">
+              <p class="text-white">View Details</p>
+            </div>
+          </div>
+          <h4 class="mt-3">Vegan Chocolate Muffins</h4>
+          <p class="text-muted">Savor the rich cocoa goodness, cruelty-free and oh-so-sweet!</p>
+        </a>
+      </div>
+    </div>
+  
+    <!-- Product 5 -->
+    <div class="col-md-4">
+      <div class="product-card text-center">
+        <a href="{% url 'product-detail' 5 %}" class="text-decoration-none">
+          <div class="product-image position-relative">
+            <img src="{% static 'app/images/product/p5..jpg' %}" alt="Latte" class="img-fluid rounded shadow-sm">
+            <div class="overlay">
+              <p class="text-white">View Details</p>
+            </div>
+          </div>
+          <h4 class="mt-3">Zesty Nacho Dip</h4>
+          <p class="text-muted">The ultimate companion for your chips – creamy, tangy, and irresistible.</p>
+        </a>
+      </div>
+    </div>
+  
+    <!-- Product 6 -->
+    <div class="col-md-4">
+      <div class="product-card text-center">
+        <a href="{% url 'product-detail' 6 %}" class="text-decoration-none">
+          <div class="product-image position-relative">
+            <img src="{% static 'app/images/product/p6.jpg' %}" alt="Cappuccino" class="img-fluid rounded shadow-sm">
+            <div class="overlay">
+              <p class="text-white">View Details</p>
+            </div>
+          </div>
+          <h4 class="mt-3">Veg spring rolls</h4>
+          <p class="text-muted">Snack time just got better – crunchy, fresh, and oh-so-yummy!</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  
+
+<br><br>
+ <!-- Product 1 -->
+ <div class="col-md-4">
+  <div class="product-card text-center">
+    <a href="{% url 'product-detail' 1 %}" class="text-decoration-none">
+      <div class="product-image position-relative">
+        <img src="{% static 'app/images/product/p1.jpg' %}" alt="Espresso" class="img-fluid rounded shadow-sm">
+        <div class="overlay">
+          <p class="text-white">View Details</p>
+        </div>
+      </div>
+      <h4 class="mt-3">Espresso</h4>
+      <p class="text-muted">Rich and bold, our espresso is a perfect pick-me-up.</p>
+    </a>
+  </div>
+</div>
+
+<!-- Product 2 -->
+<div class="col-md-4">
+  <div class="product-card text-center">
+    <a href="{% url 'product-detail' '23' %}" class="text-decoration-none">
+      <div class="product-image position-relative">
+        <img src="{% static 'app/images/product/p2.jpg' %}" alt="Latte" class="img-fluid rounded shadow-sm">
+        <div class="overlay">
+          <p class="text-white">View Details</p>
+        </div>
+      </div>
+      <h4 class="mt-3">Latte</h4>
+      <p class="text-muted">Creamy and smooth, made with freshly brewed coffee.</p>
+    </a>
+  </div>
+</div>
+
+<!-- Product 3 -->
+<div class="col-md-4">
+  <div class="product-card text-center">
+    <a href="{% url 'product-detail' 3 %}" class="text-decoration-none">
+      <div class="product-image position-relative">
+        <img src="{% static 'app/images/product/ppp3.jpg' %}" alt="Cappuccino" class="img-fluid rounded shadow-sm">
+        <div class="overlay">
+          <p class="text-white">View Details</p>
+        </div>
+      </div>
+      <h4 class="mt-3">Cappuccino</h4>
+      <p class="text-muted">Perfectly foamed milk with a hint of chocolate.</p>
+    </a>
+  </div>
+</div>
+</div>
+
+
+
+
+        
+      </div>
+     
+    </div>
+    <br/><br/>
+{% endblock main-content %}
+

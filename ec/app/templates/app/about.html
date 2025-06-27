@@ -1,0 +1,65 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock title %}
+
+{% block main-content %}
+<div class="container mt-5">
+
+    <!-- About Us Header -->
+    <div class="text-center mb-5">
+        <h2 class="display-3">Welcome to The COZzy Corner</h2>
+        <p class="lead text-muted">Where flavors meet passion and every bite brings joy!</p>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <img src="{% static 'app/images/product/aa.jpg' %}" alt="Delicious Food" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-6">
+            <p class="fs-4">
+                Welcome to [Your Website Name] – your one-stop destination for delicious foods, irresistible snacks, and soul-soothing coffee. Our mission? To bring happiness to your plate and a smile to your face!
+            </p>
+            <p class="fs-4">
+                From crispy, crunchy snacks to warm, comforting brews, every item on our menu is crafted with love, care, and the finest ingredients. Whether you're craving a quick bite, a hearty meal, or that perfect coffee to kickstart your day, we've got you covered.
+            </p>
+            <p class="fs-4">Food is our passion. We pour our heart into every dish to deliver a memorable experience.</p>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="text-center mb-5">
+        <h2 class="display-4">Our Mission</h2>
+        <p class="lead text-muted">Crafting moments of joy, one meal at a time.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="fs-4 text-center">
+                At [The Cozy Corner], our mission is simple: to deliver delicious, wholesome, and satisfying food and drinks that bring people together. We believe in using the finest ingredients to create flavors that are not just tasty, but also nourishing for the soul. Whether it’s a cozy coffee, a flavorful snack, or a comforting meal, we aim to make every moment special.
+            </p>
+        </div>
+    </div>
+
+    <!-- Values Section (Optional) -->
+    <div class="text-center mt-5">
+        <h3 class="display-5">Our Values</h3>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <h4>Quality</h4>
+                <p>We use only the finest ingredients, ensuring every bite is filled with flavor and love.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Passion</h4>
+                <p>Food is our passion. We pour our heart into every dish to deliver a memorable experience.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Community</h4>
+                <p>We bring people together, creating moments of connection through food and coffee.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br><br>
+{% endblock main-content %}
